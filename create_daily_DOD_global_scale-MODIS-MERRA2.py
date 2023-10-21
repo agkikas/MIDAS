@@ -18,13 +18,12 @@ import numpy.ma as ma
 import time
 import netCDF4 as ncf
 
-
 scriptstart=dt.datetime.now()
 
 print (scriptstart)
 
 #Define here the year
-year='2016'
+year='2002'
 
 #Give the satellite name
 satellite='MODIS-TERRA'
@@ -275,8 +274,7 @@ for row in np.arange(len(yeardates)):
         
         modisdodSOLZENANGLSUM=np.zeros((latdim,londim))
         modisdodSENZENANGLSUM=np.zeros((latdim,londim))
-        
-        
+                
         modisaodCOUNTS=np.zeros((latdim,londim))
         
         modisdodCOUNTS=np.zeros((latdim,londim))
