@@ -293,8 +293,7 @@ for row in np.arange(len(yeardates)):
         
         modisdodSOLZENANGLCOUNTS=np.zeros((latdim,londim))
         modisdodSENZENANGLCOUNTS=np.zeros((latdim,londim))
-        
-        
+                
         #Loop in the files list for each day
         for tmpmdodswath in tmpmdodswaths:
             
