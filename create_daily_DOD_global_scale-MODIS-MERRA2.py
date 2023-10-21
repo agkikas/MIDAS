@@ -297,43 +297,45 @@ for row in np.arange(len(yeardates)):
         #Loop in the files list for each day
         for tmpmdodswath in tmpmdodswaths:
             
-            modswath=read_MODIS_swath_files(tmpmdodswath)
-                
-            maskelemAOD=modswath[2].mask
-            maskelemDOD=modswath[3].mask  
-            maskelemDODfine=modswath[4].mask
-            maskelemDODcoarse=modswath[5].mask
-            maskelemALG=modswath[6].mask
-            maskelemLANDSEAFLAG=modswath[7].mask
-            maskelemANGOCEAN1=modswath[8].mask
-            maskelemANGOCEAN2=modswath[9].mask
-            maskelemANGLAND=modswath[10].mask
-            maskelemSOLZENANGL=modswath[11].mask
-            maskelemSENZENANGL=modswath[12].mask
+            try: 
+            
+                modswath=read_MODIS_swath_files(tmpmdodswath)
                     
-            maskelemAODbin=maskelemAOD.astype(int)
-            maskelemDODbin=maskelemDOD.astype(int)
-            maskelemDODfinebin=maskelemDODfine.astype(int)
-            maskelemDODcoarsebin=maskelemDODcoarse.astype(int)
-            maskelemALGbin=maskelemALG.astype(int)
-            maskelemLANDSEAFLAGbin=maskelemLANDSEAFLAG.astype(int)
-            maskelemANGOCEAN1bin=maskelemANGOCEAN1.astype(int)
-            maskelemANGOCEAN2bin=maskelemANGOCEAN2.astype(int)
-            maskelemANGLANDbin=maskelemANGLAND.astype(int)
-            maskelemSOLZENANGLbin=maskelemSOLZENANGL.astype(int)
-            maskelemSENZENANGLbin=maskelemSOLZENANGL.astype(int)
-           
-            nonmaskidxsAOD=np.where(maskelemAODbin==0)
-            nonmaskidxsDOD=np.where(maskelemDODbin==0)            
-            nonmaskidxsDODfine=np.where(maskelemDODfinebin==0)
-            nonmaskidxsDODcoarse=np.where(maskelemDODcoarsebin==0)
-            nonmaskidxsALG=np.where(maskelemALGbin==0)
-            nonmaskidxsLANDSEAFLAG=np.where(maskelemLANDSEAFLAGbin==0)
-            nonmaskidxsANGOCEAN1=np.where(maskelemANGOCEAN1bin==0)
-            nonmaskidxsANGOCEAN2=np.where(maskelemANGOCEAN2bin==0)
-            nonmaskidxsANGLAND=np.where(maskelemANGLANDbin==0)
-            nonmaskidxsSOLZENANGL=np.where(maskelemSOLZENANGLbin==0)
-            nonmaskidxsSENZENANGL=np.where(maskelemSENZENANGLbin==0)
+                maskelemAOD=modswath[2].mask
+                maskelemDOD=modswath[3].mask  
+                maskelemDODfine=modswath[4].mask
+                maskelemDODcoarse=modswath[5].mask
+                maskelemALG=modswath[6].mask
+                maskelemLANDSEAFLAG=modswath[7].mask
+                maskelemANGOCEAN1=modswath[8].mask
+                maskelemANGOCEAN2=modswath[9].mask
+                maskelemANGLAND=modswath[10].mask
+                maskelemSOLZENANGL=modswath[11].mask
+                maskelemSENZENANGL=modswath[12].mask
+                        
+                maskelemAODbin=maskelemAOD.astype(int)
+                maskelemDODbin=maskelemDOD.astype(int)
+                maskelemDODfinebin=maskelemDODfine.astype(int)
+                maskelemDODcoarsebin=maskelemDODcoarse.astype(int)
+                maskelemALGbin=maskelemALG.astype(int)
+                maskelemLANDSEAFLAGbin=maskelemLANDSEAFLAG.astype(int)
+                maskelemANGOCEAN1bin=maskelemANGOCEAN1.astype(int)
+                maskelemANGOCEAN2bin=maskelemANGOCEAN2.astype(int)
+                maskelemANGLANDbin=maskelemANGLAND.astype(int)
+                maskelemSOLZENANGLbin=maskelemSOLZENANGL.astype(int)
+                maskelemSENZENANGLbin=maskelemSOLZENANGL.astype(int)
+            
+                nonmaskidxsAOD=np.where(maskelemAODbin==0)
+                nonmaskidxsDOD=np.where(maskelemDODbin==0)            
+                nonmaskidxsDODfine=np.where(maskelemDODfinebin==0)
+                nonmaskidxsDODcoarse=np.where(maskelemDODcoarsebin==0)
+                nonmaskidxsALG=np.where(maskelemALGbin==0)
+                nonmaskidxsLANDSEAFLAG=np.where(maskelemLANDSEAFLAGbin==0)
+                nonmaskidxsANGOCEAN1=np.where(maskelemANGOCEAN1bin==0)
+                nonmaskidxsANGOCEAN2=np.where(maskelemANGOCEAN2bin==0)
+                nonmaskidxsANGLAND=np.where(maskelemANGLANDbin==0)
+                nonmaskidxsSOLZENANGL=np.where(maskelemSOLZENANGLbin==0)
+                nonmaskidxsSENZENANGL=np.where(maskelemSENZENANGLbin==0)
             
 #####################################################################################################################################                
 #            modisaodFIN[nonmaskidxsAOD[0],nonmaskidxsAOD[1]]=modswath[2][nonmaskidxsAOD[0],nonmaskidxsAOD[1]]
@@ -350,31 +352,35 @@ for row in np.arange(len(yeardates)):
 #            modisdodANGOCEAN2FIN[nonmaskidxsANGOCEAN2[0],nonmaskidxsANGOCEAN2[1]]=modswath[9][nonmaskidxsANGOCEAN2[0],nonmaskidxsANGOCEAN2[1]]
 #            modisdodANGLANDFIN[nonmaskidxsANGLAND[0],nonmaskidxsANGLAND[1]]=modswath[10][nonmaskidxsANGLAND[0],nonmaskidxsANGLAND[1]]
 #####################################################################################################################################
-            #Sum the values
-            modisaodSUM[nonmaskidxsAOD[0],nonmaskidxsAOD[1]]+=modswath[2][nonmaskidxsAOD[0],nonmaskidxsAOD[1]]
-            modisdodSUM[nonmaskidxsDOD[0],nonmaskidxsDOD[1]]+=modswath[3][nonmaskidxsDOD[0],nonmaskidxsDOD[1]]
-            modisdodFINESUM[nonmaskidxsDODfine[0],nonmaskidxsDODfine[1]]+=modswath[4][nonmaskidxsDODfine[0],nonmaskidxsDODfine[1]]
-            modisdodCOARSESUM[nonmaskidxsDODcoarse[0],nonmaskidxsDODcoarse[1]]+=modswath[5][nonmaskidxsDODcoarse[0],nonmaskidxsDODcoarse[1]]
-            modisdodALGSUM[nonmaskidxsALG[0],nonmaskidxsALG[1]]+=modswath[6][nonmaskidxsALG[0],nonmaskidxsALG[1]]
-            modisdodLANDSEAFLAGSUM[nonmaskidxsLANDSEAFLAG[0],nonmaskidxsLANDSEAFLAG[1]]+=modswath[7][nonmaskidxsLANDSEAFLAG[0],nonmaskidxsLANDSEAFLAG[1]]
-            modisdodANGOCEAN1SUM[nonmaskidxsANGOCEAN1[0],nonmaskidxsANGOCEAN1[1]]+=modswath[8][nonmaskidxsANGOCEAN1[0],nonmaskidxsANGOCEAN1[1]]
-            modisdodANGOCEAN2SUM[nonmaskidxsANGOCEAN2[0],nonmaskidxsANGOCEAN2[1]]+=modswath[9][nonmaskidxsANGOCEAN2[0],nonmaskidxsANGOCEAN2[1]]
-            modisdodANGLANDSUM[nonmaskidxsANGLAND[0],nonmaskidxsANGLAND[1]]+=modswath[10][nonmaskidxsANGLAND[0],nonmaskidxsANGLAND[1]]
-            modisdodSOLZENANGLSUM[nonmaskidxsSOLZENANGL[0],nonmaskidxsSOLZENANGL[1]]+=modswath[11][nonmaskidxsSOLZENANGL[0],nonmaskidxsSOLZENANGL[1]]
-            modisdodSENZENANGLSUM[nonmaskidxsSENZENANGL[0],nonmaskidxsSENZENANGL[1]]+=modswath[12][nonmaskidxsSENZENANGL[0],nonmaskidxsSENZENANGL[1]]
-                       
-            #Sum the counts
-            modisaodCOUNTS[nonmaskidxsAOD[0],nonmaskidxsAOD[1]]+=1
-            modisdodCOUNTS[nonmaskidxsDOD[0],nonmaskidxsDOD[1]]+=1
-            modisdodFINECOUNTS[nonmaskidxsDODfine[0],nonmaskidxsDODfine[1]]+=1
-            modisdodCOARSECOUNTS[nonmaskidxsDODcoarse[0],nonmaskidxsDODcoarse[1]]+=1
-            modisdodALGCOUNTS[nonmaskidxsALG[0],nonmaskidxsALG[1]]+=1
-            modisdodLANDSEAFLAGCOUNTS[nonmaskidxsLANDSEAFLAG[0],nonmaskidxsLANDSEAFLAG[1]]+=1
-            modisdodANGOCEAN1COUNTS[nonmaskidxsANGOCEAN1[0],nonmaskidxsANGOCEAN1[1]]+=1
-            modisdodANGOCEAN2COUNTS[nonmaskidxsANGOCEAN2[0],nonmaskidxsANGOCEAN2[1]]+=1
-            modisdodANGLANDCOUNTS[nonmaskidxsANGLAND[0],nonmaskidxsANGLAND[1]]+=1            
-            modisdodSOLZENANGLCOUNTS[nonmaskidxsSOLZENANGL[0],nonmaskidxsSOLZENANGL[1]]+=1
-            modisdodSENZENANGLCOUNTS[nonmaskidxsSENZENANGL[0],nonmaskidxsSENZENANGL[1]]+=1
+                #Sum the values
+                modisaodSUM[nonmaskidxsAOD[0],nonmaskidxsAOD[1]]+=modswath[2][nonmaskidxsAOD[0],nonmaskidxsAOD[1]]
+                modisdodSUM[nonmaskidxsDOD[0],nonmaskidxsDOD[1]]+=modswath[3][nonmaskidxsDOD[0],nonmaskidxsDOD[1]]
+                modisdodFINESUM[nonmaskidxsDODfine[0],nonmaskidxsDODfine[1]]+=modswath[4][nonmaskidxsDODfine[0],nonmaskidxsDODfine[1]]
+                modisdodCOARSESUM[nonmaskidxsDODcoarse[0],nonmaskidxsDODcoarse[1]]+=modswath[5][nonmaskidxsDODcoarse[0],nonmaskidxsDODcoarse[1]]
+                modisdodALGSUM[nonmaskidxsALG[0],nonmaskidxsALG[1]]+=modswath[6][nonmaskidxsALG[0],nonmaskidxsALG[1]]
+                modisdodLANDSEAFLAGSUM[nonmaskidxsLANDSEAFLAG[0],nonmaskidxsLANDSEAFLAG[1]]+=modswath[7][nonmaskidxsLANDSEAFLAG[0],nonmaskidxsLANDSEAFLAG[1]]
+                modisdodANGOCEAN1SUM[nonmaskidxsANGOCEAN1[0],nonmaskidxsANGOCEAN1[1]]+=modswath[8][nonmaskidxsANGOCEAN1[0],nonmaskidxsANGOCEAN1[1]]
+                modisdodANGOCEAN2SUM[nonmaskidxsANGOCEAN2[0],nonmaskidxsANGOCEAN2[1]]+=modswath[9][nonmaskidxsANGOCEAN2[0],nonmaskidxsANGOCEAN2[1]]
+                modisdodANGLANDSUM[nonmaskidxsANGLAND[0],nonmaskidxsANGLAND[1]]+=modswath[10][nonmaskidxsANGLAND[0],nonmaskidxsANGLAND[1]]
+                modisdodSOLZENANGLSUM[nonmaskidxsSOLZENANGL[0],nonmaskidxsSOLZENANGL[1]]+=modswath[11][nonmaskidxsSOLZENANGL[0],nonmaskidxsSOLZENANGL[1]]
+                modisdodSENZENANGLSUM[nonmaskidxsSENZENANGL[0],nonmaskidxsSENZENANGL[1]]+=modswath[12][nonmaskidxsSENZENANGL[0],nonmaskidxsSENZENANGL[1]]
+                        
+                #Sum the counts
+                modisaodCOUNTS[nonmaskidxsAOD[0],nonmaskidxsAOD[1]]+=1
+                modisdodCOUNTS[nonmaskidxsDOD[0],nonmaskidxsDOD[1]]+=1
+                modisdodFINECOUNTS[nonmaskidxsDODfine[0],nonmaskidxsDODfine[1]]+=1
+                modisdodCOARSECOUNTS[nonmaskidxsDODcoarse[0],nonmaskidxsDODcoarse[1]]+=1
+                modisdodALGCOUNTS[nonmaskidxsALG[0],nonmaskidxsALG[1]]+=1
+                modisdodLANDSEAFLAGCOUNTS[nonmaskidxsLANDSEAFLAG[0],nonmaskidxsLANDSEAFLAG[1]]+=1
+                modisdodANGOCEAN1COUNTS[nonmaskidxsANGOCEAN1[0],nonmaskidxsANGOCEAN1[1]]+=1
+                modisdodANGOCEAN2COUNTS[nonmaskidxsANGOCEAN2[0],nonmaskidxsANGOCEAN2[1]]+=1
+                modisdodANGLANDCOUNTS[nonmaskidxsANGLAND[0],nonmaskidxsANGLAND[1]]+=1            
+                modisdodSOLZENANGLCOUNTS[nonmaskidxsSOLZENANGL[0],nonmaskidxsSOLZENANGL[1]]+=1
+                modisdodSENZENANGLCOUNTS[nonmaskidxsSENZENANGL[0],nonmaskidxsSENZENANGL[1]]+=1
+                
+            except:
+                
+                print ('Something is missing in the '+tmpmdodswath+'!!!!')
 
         #Here is the calculation of the mean value. This is done for the overlapping areas between MODIS swaths       
         modisaodFIN=modisaodSUM/modisaodCOUNTS
