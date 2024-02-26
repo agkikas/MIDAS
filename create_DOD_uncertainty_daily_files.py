@@ -62,7 +62,7 @@ elif satres=='GRID_RESOLUTION_1.0':
 
 #Define here where is the path with the raw files
 #inpath='/media/antonis/My Passport/MERRA-2/DAILY-MODIS-LEVEL2-0.1RESOLUTION/'+satcol+'/'+satellite+'/'
-inpath='/mnt/nas/datasets/MIDAS-Processing_Data/DAILY-MODIS-FILES-THROUGH-SYNERGY-OF-MODIS-MERRA2/'+satellite+'/'+satyear+'/'+satres
+inpath='/mnt/nas-1/MIDAS-Processing_Data/DAILY-MODIS-FILES-THROUGH-SYNERGY-OF-MODIS-MERRA2/'+satellite+'/'+satyear+'/'+satres
 
 #Define here the folder where the results will be stored
 # resfolder='/media/antonis/My Passport/MERRA-2/'+satcol+'/MEASUREMENT_SAMPLING_TOTAL_UNCERTAINTY/'+satellite+'/'+satres+'/'
@@ -72,7 +72,7 @@ inpath='/mnt/nas/datasets/MIDAS-Processing_Data/DAILY-MODIS-FILES-THROUGH-SYNERG
     
 #Define here the folder where the DOD uncertainty netcdf files will be stored
 #doduncfolder='/media/antonis/My Passport/MERRA-2/'+satcol+'/DOD_UNCERTAINTY_NETCDF_DAILY_FILES/'
-doduncfolder='/mnt/nas/datasets/MCD12C1/DOD_UNCERTAINTY_NETCDF_DAILY_FILES/'
+doduncfolder='/mnt/nas-1/MCD12C1/DOD_UNCERTAINTY_NETCDF_DAILY_FILES/'
 
 if not os.path.exists(doduncfolder):
     os.makedirs(doduncfolder)
@@ -178,7 +178,7 @@ gridsurface=gridsurfacetmp2.squeeze()
 # =============================================================================
 # Read the climatological file with dods as well as the coordinates
 # =============================================================================
-modisclimpath='/mnt/nas/datasets/MCD12C1/MODIS-CLIMATOLOGICAL-RESULTS-DOD/MAPS/MODIS-AQUA/GRID_RESOLUTION_0.1'
+modisclimpath='/mnt/nas-1/MCD12C1/MODIS-CLIMATOLOGICAL-RESULTS-DOD/MAPS/MODIS-AQUA/GRID_RESOLUTION_0.1'
 modisclimfile='Geographical_annual_and_seasonal_distributions_AOD_and_DOD_MODIS-AQUA_GRID_RESOLUTION_0.1-01_Jan_2003-31_Dec_2017.nc'
 
 modclim=Dataset(os.path.join(modisclimpath,modisclimfile),'r')
@@ -360,7 +360,7 @@ def dod_modis_outputs(infilepath,infile):
     
     #Read the mcd12c1file
     #mcdfilepath='/media/antonis/My Passport/MERRA-2/C061/MCD12C1_DATA_FOR_MIDAS/MIDAS-MCD12C1.A'+yearfile+'001.006.nc4'
-    mcdfilepath='/mnt/nas/datasets/MCD12C1/MCD12C1_DATA_FOR_MIDAS/'+satyear+'/'+'MIDAS-MCD12C1.A'+yearfile+'001.006.nc4'
+    mcdfilepath='/mnt/nas-1/MCD12C1/MCD12C1_DATA_FOR_MIDAS/'+satyear+'/'+'MIDAS-MCD12C1.A'+yearfile+'001.006.nc4'
        
     mcdfile=Dataset(mcdfilepath,'r')
     
