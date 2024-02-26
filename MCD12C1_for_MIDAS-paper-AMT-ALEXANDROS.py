@@ -65,24 +65,24 @@ elif satres=='GRID_RESOLUTION_1.0':
 if satellite=="MODIS-AQUA":
     
     yearfirst=2003
-    yearlast=2020
+    yearlast=2022
     
     years=np.arange(yearfirst,yearlast+1,1)
     
 elif satellite=="MODIS-TERRA":
 
     yearfirst=2001
-    yearlast=2020
+    yearlast=2022
     
     years=np.arange(yearfirst,yearlast+1,1)    
 #%%
 ################################################################################################# 
 #Define here where is the path with the raw files
 #inpath='/media/antonis/My Passport/MERRA-2/DAILY-MODIS-LEVEL2-0.1RESOLUTION/'+satcol+'/'+satellite+'/'
-inpath='/mnt/nas/datasets/MIDAS-Processing_Data/DAILY-MODIS-FILES-THROUGH-SYNERGY-OF-MODIS-MERRA2/'+satellite+'/'+year+'/'+satres
+inpath='/mnt/nas-1/MIDAS-Processing_Data/DAILY-MODIS-FILES-THROUGH-SYNERGY-OF-MODIS-MERRA2/'+satellite+'/'+year+'/'+satres
 
 #Create the output folder
-resfolder='/mnt/nas/datasets/MCD12C1/MCD12C1_DATA_FOR_MIDAS/'+year+ '/' #result
+resfolder='/mnt/nas-1/MCD12C1/MCD12C1_DATA_FOR_MIDAS/'+year+ '/' #result
 
 if not os.path.exists(resfolder):
     os.makedirs(resfolder)
@@ -115,7 +115,7 @@ complevel=9 #This varies from 1 to 9 (http://unidata.github.io/netcdf4-python/)
 # # =============================================================================
 # # Read the climatological file with dods as well as the coordinates
 # # =============================================================================
-modisclimpath='/mnt/nas/datasets/MCD12C1/MODIS-CLIMATOLOGICAL-RESULTS-DOD/MAPS/MODIS-AQUA/GRID_RESOLUTION_0.1' #geographical annual
+modisclimpath='/mnt/nas-1/MCD12C1/MODIS-CLIMATOLOGICAL-RESULTS-DOD/MAPS/MODIS-AQUA/GRID_RESOLUTION_0.1' #geographical annual
 modisclimfile='Geographical_annual_and_seasonal_distributions_AOD_and_DOD_MODIS-AQUA_GRID_RESOLUTION_0.1-01_Jan_2003-31_Dec_2017.nc'
 
 modclim=Dataset(os.path.join(modisclimpath,modisclimfile),'r')
@@ -184,7 +184,7 @@ def extract_indices_from_MCD12C1 (mcdfilepath,mcdfilename):
 #years=np.sort(np.unique(studyperiod.year))
 
 #Define here where the MCD12C1 data are stored
-modltpath='/mnt/nas/datasets/MCD12C1/' +year+ '/' #downloaded
+modltpath='/mnt/nas-1/MCD12C1/' +year+ '/' #downloaded
 
 #%%
 
