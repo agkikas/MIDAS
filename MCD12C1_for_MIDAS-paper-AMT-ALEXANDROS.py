@@ -41,7 +41,7 @@ print ("The script started at:", scriptstart)
 satcol='C061'
 satellite='MODIS-AQUA'
 satres='GRID_RESOLUTION_0.1'
-year = '2020'
+year = '2022'
 
 if satres=='GRID_RESOLUTION_0.1':
     
@@ -192,8 +192,8 @@ modltpath='/mnt/nas-1/MCD12C1/' +year+ '/' #downloaded
 #for year in years: #!original code
 try:#!added
     
-    modltfilename='MCD12C1.A'+str(year)+'001.006.2021362215328.hdf' #!check for other runs
-    
+    modltfilename='MCD12C1.A'+str(year)+'001.061.2023244164746.hdf' #!check for other runs
+        
     print (modltfilename)
 
     landcover=extract_indices_from_MCD12C1(modltpath,modltfilename)
