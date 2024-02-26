@@ -29,7 +29,7 @@ gridres='GRID_RESOLUTION_0.1'
 filepattern='*GRID_RESOLUTION_0.1*'
 
 #Define here the path where the data are stored
-modpath='/mnt/nas/datasets/MIDAS-Processing_Data/DAILY-MODIS-FILES-THROUGH-SYNERGY-OF-MODIS-MERRA2/'+satellite+'/'+year+'/GRID_RESOLUTION_0.1/' #add year,3rd script
+modpath='/mnt/nas-1/MIDAS-Processing_Data/DAILY-MODIS-FILES-THROUGH-SYNERGY-OF-MODIS-MERRA2/'+satellite+'/'+year+'/GRID_RESOLUTION_0.1/' #add year,3rd script
 
 #List all MODIS-MIDAS files according to the filepattern
 modisfiles = sorted(glob2.glob(modpath+'/**/'+filepattern+'.nc'))
@@ -39,8 +39,8 @@ for modisfile in modisfiles:
     
     if satellite == 'MODIS-AQUA':
         
-        ncfile1path=modisfile[:126]
-        ncfile1=modisfile[126:]
+        ncfile1path=modisfile[:119]
+        ncfile1=modisfile[119:]
         
     elif satellite == 'MODIS-TERRA':
         
