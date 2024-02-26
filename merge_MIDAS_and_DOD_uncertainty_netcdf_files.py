@@ -37,6 +37,8 @@ modisfiles = sorted(glob2.glob(modpath+'/**/'+filepattern+'.nc'))
 #%%
 for modisfile in modisfiles:
     
+    print (modisfile)
+    
     if satellite == 'MODIS-AQUA':
         
         ncfile1path=modisfile[:119]
@@ -48,7 +50,7 @@ for modisfile in modisfiles:
         ncfile1=modisfiles[123:]   
         
     #Create the path and the filename of the uncertainty netcdf file
-    ncfile2path='/mnt/nas/datasets/MCD12C1/DOD_UNCERTAINTY_NETCDF_DAILY_FILES/'+modiscollection+'/'+satellite+'/'+ncfile1[-11:-7]+'/'+filepattern[1:-1]#+year, 5th script
+    ncfile2path='/mnt/nas-1/MCD12C1/DOD_UNCERTAINTY_NETCDF_DAILY_FILES/'+modiscollection+'/'+satellite+'/'+ncfile1[-11:-7]+'/'+filepattern[1:-1]#+year, 5th script
                    
     ncfile2= satellite+'-DOD-UNCERTAINTY-'+filepattern[1:-1]+'-'+ncfile1[-11:-3]+'.nc'
 
