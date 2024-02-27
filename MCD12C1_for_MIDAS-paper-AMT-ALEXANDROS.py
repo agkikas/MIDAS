@@ -39,9 +39,9 @@ print ("The script started at:", scriptstart)
 ###################################################################################################################################
 #Define here what do you need for the path on the raw files
 satcol='C061'
-satellite='MODIS-AQUA'
+satellite='MODIS-TERRA'
 satres='GRID_RESOLUTION_0.1'
-year = '2022'
+year = '2017'
 
 if satres=='GRID_RESOLUTION_0.1':
     
@@ -192,7 +192,7 @@ modltpath='/mnt/nas-1/MCD12C1/' +year+ '/' #downloaded
 #for year in years: #!original code
 try:#!added
     
-    modltfilename='MCD12C1.A'+str(year)+'001.061.2023244164746.hdf' #!check for other runs
+    modltfilename='MCD12C1.A'+str(year)+'001.006.2019192025407.hdf' #!check for other runs
         
     print (modltfilename)
 
