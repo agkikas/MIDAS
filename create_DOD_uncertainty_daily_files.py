@@ -38,9 +38,9 @@ print ("The script started at:", scriptstart)
 ###################################################################################################################################
 #Define here what do you need for the path on the raw files
 satcol='C061'
-satellite='MODIS-AQUA'
+satellite='MODIS-TERRA'
 satres='GRID_RESOLUTION_0.1'
-satyear='2021'
+satyear='2022'
 
 if satres=='GRID_RESOLUTION_0.1':
     
@@ -453,8 +453,8 @@ for modisfile in modisfiles:
     modfiledate=dt.datetime.strptime(modisfile[-11:-3],'%Y%m%d')
     
     #Here is the daily path and file
-    dpath=modisfile[:-54]
-    dfile=modisfile[-54:]
+    dpath=modisfile[:-55]
+    dfile=modisfile[-55:]
     
     #The DOD uncertainty square for each file    
     #doduncsqr=dod_uncertainty_square(dpath,dfile)

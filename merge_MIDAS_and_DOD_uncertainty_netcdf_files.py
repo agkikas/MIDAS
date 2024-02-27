@@ -22,7 +22,7 @@ satellite='MODIS-AQUA'
 #Define here which is the MODIS Collection
 modiscollection='C061'
 
-year = '2019'
+year = '2022'
 gridres='GRID_RESOLUTION_0.1'
 
 #Give here the pattern in order to select the appropriate files (i.e. grid resolution)
