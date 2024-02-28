@@ -40,7 +40,7 @@ print ("The script started at:", scriptstart)
 satcol='C061'
 satellite='MODIS-TERRA'
 satres='GRID_RESOLUTION_0.1'
-satyear='2022'
+satyear='2018'
 
 if satres=='GRID_RESOLUTION_0.1':
     
@@ -444,86 +444,93 @@ def dod_modis_outputs(infilepath,infile):
 # Read the daily MODIS netcdf file
 # =============================================================================
 for modisfile in modisfiles:
+#for modisfile in modisfiles[20:]:
 #for modisfile in modisfiles[:365]:
 #for modisfile in modisfiles[:31]:
+
+    try:
     
-    print (modisfile)
-    
-    #Here is the modis file date
-    modfiledate=dt.datetime.strptime(modisfile[-11:-3],'%Y%m%d')
-    
-    #Here is the daily path and file
-    dpath=modisfile[:-55]
-    dfile=modisfile[-55:]
-    
-    #The DOD uncertainty square for each file    
-    #doduncsqr=dod_uncertainty_square(dpath,dfile)
-    moddodout=dod_modis_outputs(dpath,dfile)
-           
-# =============================================================================
-#     #Create the DOD uncertainty netcdfile
-# =============================================================================
-    ncdoduncfolder=doduncfolder+satcol+'/'+satellite+'/'+str(modfiledate.year)+'/'+satres+'/'
-    
-    if not os.path.exists(ncdoduncfolder):
-        os.makedirs(ncdoduncfolder)
-    
-    outdoduncncfile=satellite+'-DOD-UNCERTAINTY-'+satres+'-'+modisfile[-11:-3]+'.nc'
-    
-    ncdoduncfile=Dataset(os.path.join(ncdoduncfolder,outdoduncncfile),'w',format='NETCDF4')
-    
-    #Create Global Attributes
-    ncdoduncfile.description='MIDAS_DOD_UNCERTAINTY_WITH_MASKED_ELEMENTS'
-    ncdoduncfile.history='Created:  '+time.ctime(time.time())
-    ncdoduncfile.source='netCDF4 python module tutorial'
-    ncdoduncfile.Conventions = 'CF-1.6'
-    
-    ncdoduncfilelat=ncdoduncfile.createDimension('Latitude',moddodout[0].shape[0])
-    ncdoduncfilelon=ncdoduncfile.createDimension('Longitude',moddodout[0].shape[1])
-    ttime=ncdoduncfile.createDimension('Time',None)
-    
-    #Latitude
-    Latitude=ncdoduncfile.createVariable('Latitude',np.float32,('Latitude','Longitude'),
-                                    fill_value=np.nan,zlib=True,least_significant_digit=lstsigdig,complevel=complevel)
+        print (modisfile)
         
-    Latitude[:]=modlat
-    
-    Latitude.valid_range=(-90.,90.)
-    Latitude.long_name='Geodetic Latitude'
-    Latitude.units='degrees_north'
-    
-    #Longitude
-    Longitude=ncdoduncfile.createVariable('Longitude',np.float32,('Latitude','Longitude'),
-                                       fill_value=np.nan,zlib=True,least_significant_digit=lstsigdig,complevel=complevel) 
-    
-    Longitude[:]=modlon
+        #Here is the modis file date
+        modfiledate=dt.datetime.strptime(modisfile[-11:-3],'%Y%m%d')
+        
+        #Here is the daily path and file
+        dpath=modisfile[:-55]
+        dfile=modisfile[-55:]
+        
+        #The DOD uncertainty square for each file    
+        #doduncsqr=dod_uncertainty_square(dpath,dfile)
+        moddodout=dod_modis_outputs(dpath,dfile)
             
-    Longitude.valid_range=(-180.,180.)
-    Longitude.long_name='Geodetic Longitude'
-    Longitude.units='degrees_east'
-    
-    #MIDAS DOD uncertainty
-    Middodunc=ncdoduncfile.createVariable('MIDAS_DOD_UNCERTAINTY',np.float32,('Latitude','Longitude'),
-                                       fill_value=np.nan,zlib=True,least_significant_digit=lstsigdig,complevel=complevel)
-    
-    Middodunc[:]=moddodout[3]
+    # =============================================================================
+    #     #Create the DOD uncertainty netcdfile
+    # =============================================================================
+        ncdoduncfolder=doduncfolder+satcol+'/'+satellite+'/'+str(modfiledate.year)+'/'+satres+'/'
+        
+        if not os.path.exists(ncdoduncfolder):
+            os.makedirs(ncdoduncfolder)
+        
+        outdoduncncfile=satellite+'-DOD-UNCERTAINTY-'+satres+'-'+modisfile[-11:-3]+'.nc'
+        
+        ncdoduncfile=Dataset(os.path.join(ncdoduncfolder,outdoduncncfile),'w',format='NETCDF4')
+        
+        #Create Global Attributes
+        ncdoduncfile.description='MIDAS_DOD_UNCERTAINTY_WITH_MASKED_ELEMENTS'
+        ncdoduncfile.history='Created:  '+time.ctime(time.time())
+        ncdoduncfile.source='netCDF4 python module tutorial'
+        ncdoduncfile.Conventions = 'CF-1.6'
+        
+        ncdoduncfilelat=ncdoduncfile.createDimension('Latitude',moddodout[0].shape[0])
+        ncdoduncfilelon=ncdoduncfile.createDimension('Longitude',moddodout[0].shape[1])
+        ttime=ncdoduncfile.createDimension('Time',None)
+        
+        #Latitude
+        Latitude=ncdoduncfile.createVariable('Latitude',np.float32,('Latitude','Longitude'),
+                                        fill_value=np.nan,zlib=True,least_significant_digit=lstsigdig,complevel=complevel)
             
-    Middodunc.long_name='MIDAS DOD uncertainty with masked values'
-    Middodunc.units='None'
-    
-    
-    #Time
-    modtime=ncdoduncfile.createVariable('Time',np.float32,('Time',),zlib=True,least_significant_digit=lstsigdig,complevel=complevel)
-           
-    modtime[:]=ncf.date2num(modfiledate,units='days since '+modfiledate.strftime('%Y-%m-%d %H:%M:%S'))
-    
-    #modtime[:]=yeardates[row].strftime('%Y-%m-%d %H:%M:%S')
-    
-    modtime.long_name='Time'
-    modtime.units='days since '+modfiledate.strftime('%Y-%m-%d %H:%M:%S')
-    modtime.calendar='julian'
-       
-    ncdoduncfile.close()
+        Latitude[:]=modlat
+        
+        Latitude.valid_range=(-90.,90.)
+        Latitude.long_name='Geodetic Latitude'
+        Latitude.units='degrees_north'
+        
+        #Longitude
+        Longitude=ncdoduncfile.createVariable('Longitude',np.float32,('Latitude','Longitude'),
+                                        fill_value=np.nan,zlib=True,least_significant_digit=lstsigdig,complevel=complevel) 
+        
+        Longitude[:]=modlon
+                
+        Longitude.valid_range=(-180.,180.)
+        Longitude.long_name='Geodetic Longitude'
+        Longitude.units='degrees_east'
+        
+        #MIDAS DOD uncertainty
+        Middodunc=ncdoduncfile.createVariable('MIDAS_DOD_UNCERTAINTY',np.float32,('Latitude','Longitude'),
+                                        fill_value=np.nan,zlib=True,least_significant_digit=lstsigdig,complevel=complevel)
+        
+        Middodunc[:]=moddodout[3]
+                
+        Middodunc.long_name='MIDAS DOD uncertainty with masked values'
+        Middodunc.units='None'
+        
+        
+        #Time
+        modtime=ncdoduncfile.createVariable('Time',np.float32,('Time',),zlib=True,least_significant_digit=lstsigdig,complevel=complevel)
+            
+        modtime[:]=ncf.date2num(modfiledate,units='days since '+modfiledate.strftime('%Y-%m-%d %H:%M:%S'))
+        
+        #modtime[:]=yeardates[row].strftime('%Y-%m-%d %H:%M:%S')
+        
+        modtime.long_name='Time'
+        modtime.units='days since '+modfiledate.strftime('%Y-%m-%d %H:%M:%S')
+        modtime.calendar='julian'
+        
+        ncdoduncfile.close()
+        
+    except:
+        
+        print ('There is a missing variable in the file: :', dfile)
   
 ###################################################################################################################################
 
