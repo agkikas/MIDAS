@@ -17,12 +17,12 @@ import os
 nco = Nco()
 
 #Define which satellite are you using
-satellite='MODIS-AQUA'
+satellite='MODIS-TERRA'
 
 #Define here which is the MODIS Collection
 modiscollection='C061'
 
-year = '2022'
+year = '2021'
 gridres='GRID_RESOLUTION_0.1'
 
 #Give here the pattern in order to select the appropriate files (i.e. grid resolution)
@@ -46,8 +46,8 @@ for modisfile in modisfiles:
         
     elif satellite == 'MODIS-TERRA':
         
-        ncfile1path=modisfile[:122]
-        ncfile1=modisfiles[123:]   
+        ncfile1path=modisfile[:120]
+        ncfile1=modisfile[120:]   
         
     #Create the path and the filename of the uncertainty netcdf file
     ncfile2path='/mnt/nas-1/MCD12C1/DOD_UNCERTAINTY_NETCDF_DAILY_FILES/'+modiscollection+'/'+satellite+'/'+ncfile1[-11:-7]+'/'+filepattern[1:-1]#+year, 5th script

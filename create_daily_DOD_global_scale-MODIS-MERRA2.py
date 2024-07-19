@@ -23,7 +23,7 @@ scriptstart=dt.datetime.now()
 print (scriptstart)
 
 #Define here the year
-year='2015'
+year='2024'
 
 #Give the satellite name
 satellite='MODIS-TERRA'
