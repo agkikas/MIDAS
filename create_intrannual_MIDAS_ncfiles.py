@@ -19,7 +19,7 @@ import matplotlib as mpl
 
 # %%
 #Define here info for the paths
-satellite = 'MODIS-AQUA'
+satellite = 'MODIS-TERRA'
 
 #Define here the year
 year = '2016'
@@ -39,8 +39,8 @@ if not os.path.exists(regncfolder):
 #Define the path where the regional netcdfs will be stored
 intraregncfolder= '/home/agkikas/MIDAS-SS/REGIONAL-INTRANNUAL-NETCDF-FILES/'+satellite+'/'+year+'/'+gridres+'/'
 
-if not os.path.exists(regncfolder):
-    os.makedirs(regncfolder)
+if not os.path.exists(intraregncfolder):
+    os.makedirs(intraregncfolder)
 
 #%%
 #Define here the study domain
@@ -158,7 +158,6 @@ combncs=xr.open_mfdataset(regmidasfiles,parallel=True)
 #Select only the MIDAS DOD
 midasdod = combncs['Modis-total-dust-optical-depth-at-550nm']
 
-del combncs
 #%%
 #Calculate the monthly means
 regdommmean = midasdod.resample(Time='1MS').mean(dim='Time')
@@ -168,6 +167,8 @@ regdommmean = midasdod.resample(Time='1MS').mean(dim='Time')
 regdomdilename = 'INTRA-ANNUAL_'+satellite.replace('MODIS','MIDAS')+'_'+studyregion+'_DOD550_'+year+'.nc'
 
 regdommmean.to_netcdf(os.path.join(intraregncfolder,regdomdilename))
+
+regdommmean.close()
 
 # # %%
 # #Create an array with the indices of the months of the year

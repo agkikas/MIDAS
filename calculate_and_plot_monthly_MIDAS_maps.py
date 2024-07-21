@@ -82,7 +82,7 @@ figx=20
 figy=10
 
 #Steps for meridians and parallels
-merstep=5
+merstep=10
 parstep=5
 
 #Grid lines on the map
@@ -152,9 +152,15 @@ combncs=xr.open_mfdataset(regmidasfiles,parallel=True)
 #Select only the MIDAS DOD
 midasdod = combncs['Modis-total-dust-optical-depth-at-550nm']
 
+del combncs
 #%%
 #Calculate the monthly means
 regdommmean = midasdod.resample(Time='1MS').mean(dim='Time')
+
+#%%
+#Save the intrannual netcdf file
+regdomdilename = 'INTRA-ANNUAL_'+satellite.replace('MODIS','MIDAS')+'_'+studyregion+'_DOD550_'+year+'.nc'
+
 
 # %%
 #Create an array with the indices of the months of the year
@@ -183,7 +189,7 @@ for monidx,monname in zip(monidxs,monnames):
 
     posn = ax.get_position()
 
-    cf=ax.pcolormesh(monregdommmean.Longitude.values,monregdommmean.Latitude.values,monregdommmean.values,
+    cf=ax.pcolormesh(monregdommmean.Longitude.values,monregdommmean.Latitude.values,monregdommmean.values.squeeze(),
                             transform=ccrs.PlateCarree(),cmap=cmap,norm=norm)
 
     #cf.cmap.set_under(cbarunder)
@@ -196,7 +202,7 @@ for monidx,monname in zip(monidxs,monnames):
     cb.ax.set_ylabel(cbartext,fontsize=cbarlbsize,labelpad=cbarlbpad,fontweight=cbarlbweight,rotation=270) 
     cb.ax.set_position([posn.x0 + posn.width + 0.05, posn.y0,0.04, posn.height])
 
-    titletext = satellite.replace('MODIS','MIDAS')+'  '+str(monidx).zfill+str(monregdommmean.indexes['Time'].to_datetimeindex().year[0])
+    titletext = satellite.replace('MODIS','MIDAS')+'  '+monname+' '+year
 
     ax.set_title(titletext,fontweight=titletextfw,fontsize=titletextfs,y=titletexty)
 
@@ -232,9 +238,11 @@ for monidx,monname in zip(monidxs,monnames):
     #ax.add_feature(lakes)
     ax.add_feature(bodr, linestyle='--', edgecolor='k', alpha=1)
 
-    outputfilename = satellite.replace('MODIS','MIDAS')+'_'+studyregion+'_DOD550_'+monname+' '+str(monregdommmean.indexes['Time'].to_datetimeindex().year[0])+'.png'
+    outputfilename = satellite.replace('MODIS','MIDAS')+'_'+studyregion+'_DOD550_'+monname+'_'+str(monregdommmean.indexes['Time'].to_datetimeindex().year[0])+'.png'
 
     plt.savefig(os.path.join(outputfolder,outputfilename),dpi=600,bbox_inches='tight')
+
+    del monregdommmean
 
     plt.show()
 
