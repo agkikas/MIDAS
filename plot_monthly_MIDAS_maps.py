@@ -19,7 +19,7 @@ import matplotlib as mpl
 
 # %%
 #Define here info for the paths
-satellite = 'MODIS-AQUA'
+satellite = 'MODIS-TERRA'
 
 #Define here the year
 year = '2016'
